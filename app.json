@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "react-native-expresso-figueiredo",
+    "slug": "react-native-expresso-figueiredo",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
