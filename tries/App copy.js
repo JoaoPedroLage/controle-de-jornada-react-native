@@ -18,6 +18,8 @@ export default function App() {
   const [travelId, setTravelId] = useState(1);
   const [status, setStatus] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const initialDate = [];
+  const endDate = [];
 
   const statusName = ['Direção', 'Refeição', 'Descanso']
 
@@ -56,17 +58,23 @@ export default function App() {
     const date = new Date();
     const inSlicedDate = date.toLocaleDateString().split('/');
     const endSlicedDate = date.toLocaleDateString().split('/');
-    const initial = `${[inSlicedDate[1], inSlicedDate[0], inSlicedDate[2]].join('/')} ${date.toLocaleTimeString()}`;
-    const end = `${[endSlicedDate[1], endSlicedDate[0], endSlicedDate[2]].join('/')} ${date.toLocaleTimeString()}`;
+    const initial = `${[inSlicedDate[1], inSlicedDate[0], inSlicedDate[2]].join('/')}\n ${date.toLocaleTimeString()}`;
+    const end = `${[endSlicedDate[1], endSlicedDate[0], endSlicedDate[2]].join('/')} \n ${date.toLocaleTimeString()}`;
 
     setIsModalVisible(!isModalVisible);
     setStatus(status);
 
     if (dataTable.length >= 1) {
       dataTable[(dataTable.length - 1)][2] = end;
-      const dti = dataTable[(dataTable.length - 1)][1];
-      console.log(dti)
-      const dtf = dataTable[(dataTable.length - 1)][2];
+      const dtiSplit = dataTable[(dataTable.length - 1)][1].split(' ')
+      const dataFormat = dtiSplit[0].split()
+      console.log(dataFormat)
+      const timeFormat = dtiSplit[1]
+      console.log(timeFormat)
+      const dti = `${[dtiSplit[0], dtiSplit[1], dtiSplit[2]].join('/')}, ${dataTable[(dataTable.length - 1)][1].split(' ')[1]}`;
+      const dtfSplit = dataTable[(dataTable.length - 1)][2].split(' ')[0].split('/');
+      console.log(dtfSplit)
+      const dtf = `${[dtfSplit[0], dtfSplit[1], dtfSplit[2]].join('/')}, ${dataTable[(dataTable.length - 1)][2].split(' ')[1]}`;
       console.log(dtf)
       const dif = calcDif(dti, dtf);
       dataTable[(dataTable.length - 1)][3] = dif;
