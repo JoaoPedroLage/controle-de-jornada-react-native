@@ -25,7 +25,7 @@ class TableNTC extends React.Component {
         <TableWrapper borderStyle={{ borderWidth: 1 }}>
           <Rows
             // data={this.props.DataTable === null ? this.props.DataTable : this.props.storeTable}
-            data={this.props.dataTable}
+            data={this.props.dataTable2}
             style={styles.RowsStyle}
             textStyle={styles.text}
           />

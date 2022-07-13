@@ -15,6 +15,7 @@ export default function App() {
   const [travelStatus, setTravelStatus] = useState('selecione o status');
   const [storeTable, setStoreTable] = useState(storeTable === null ?  [] : storeTable);
   const [dataTable, setDataTable] = useState([]);
+  const [dataTable2, setDataTable2] = useState([]);
   const [travelId, setTravelId] = useState(1);
   const [status, setStatus] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -53,28 +54,30 @@ export default function App() {
   const handleModal = () => setIsModalVisible(() => !isModalVisible);
 
   function handleButton(status) {
-    const date = new Date();
-    const inSlicedDate = date.toLocaleDateString().split('/');
-    const endSlicedDate = date.toLocaleDateString().split('/');
-    const initial = `${[inSlicedDate[1], inSlicedDate[0], inSlicedDate[2]].join('/')} ${date.toLocaleTimeString()}`;
-    const end = `${[endSlicedDate[1], endSlicedDate[0], endSlicedDate[2]].join('/')} ${date.toLocaleTimeString()}`;
+    const date = new Date().toLocaleString();
+    const date2 = new Date();
+    const inSlicedDate = date2.toLocaleDateString().split('/');
+    const BRformat = `${[inSlicedDate[1], inSlicedDate[0], inSlicedDate[2]].join('/')} \n ${date2.toLocaleTimeString()}`;
 
     setIsModalVisible(!isModalVisible);
     setStatus(status);
 
     if (dataTable.length >= 1) {
-      dataTable[(dataTable.length - 1)][2] = end;
+      dataTable2[(dataTable.length - 1)][2] = BRformat;
+      dataTable[(dataTable.length - 1)][2] = date;
       const dti = dataTable[(dataTable.length - 1)][1];
       console.log(dti)
       const dtf = dataTable[(dataTable.length - 1)][2];
       console.log(dtf)
       const dif = calcDif(dti, dtf);
-      dataTable[(dataTable.length - 1)][3] = dif;
+      dataTable2[(dataTable.length - 1)][3] = dif;
     }
 
     setTravelStatus(`${status + 1} - ${statusName[status]}`)
-    dataTable.push([status + 1, initial, '---', '---', travelId]);
+    dataTable.push([status + 1, date, '---', '---', travelId]);
+    dataTable2.push([status + 1, BRformat, '---', '---', travelId]);
     setDataTable([...dataTable]);
+    setDataTable2([...dataTable2]);
     setTravelId(travelId + 1);
     storeData([...dataTable]);
   };
@@ -125,7 +128,7 @@ export default function App() {
               disabled = { travelStatus === '3 - Descanso' ? true : false }
               />
           </View>
-          <TableNTC dataTable={dataTable} storeTable={storeTable} />
+          <TableNTC dataTable2={dataTable2} storeTable={storeTable} />
         </ScrollView>
       </SafeAreaView>
     );
