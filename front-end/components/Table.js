@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Table, TableWrapper, Row, Rows } from 'react-native-table-component';
-// import Table from 'react-bootstrap/Button';
 
 class TableNTC extends React.Component { 
   
@@ -24,8 +23,7 @@ class TableNTC extends React.Component {
         />
         <TableWrapper borderStyle={{ borderWidth: 1 }}>
           <Rows
-            // data={this.props.DataTable === null ? this.props.DataTable : this.props.storeTable}
-            data={this.props.dataTable2}
+            data={this.props.dataShowTable}
             style={styles.RowsStyle}
             textStyle={styles.text}
           />
