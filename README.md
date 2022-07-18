@@ -1,4 +1,4 @@
-# expresso-figueiredo-react-native
+# App de controle de jornada de motoristas com React Native
 Projeto com intuito de aprimorar as habilidades em React Native inspirado pela plataforma web da empresa "Expresso Figueiredo".
 #
 npm i -g expo-cli
